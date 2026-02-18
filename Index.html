@@ -1194,9 +1194,10 @@ function logoHtml(company, size, directLogoUrl) {
   const fallbackColor = logoColor(company);
   const fallbackLetter = logoLetter(company);
   const fontSize = Math.round(szLg * 0.42);
-  return `<div class="job-logo" style="width:${szLg}px;height:${szLg}px;flex-shrink:0;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+  const pad = Math.round(szLg * 0.12);
+  return `<div style="width:${szLg}px;height:${szLg}px;flex-shrink:0;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f7f7f5;">
     <img src="${esc(imgSrc)}" alt="${esc(company)}"
-      style="width:${szLg}px;height:${szLg}px;object-fit:cover;display:block;"
+      style="width:${szLg - pad*2}px;height:${szLg - pad*2}px;object-fit:contain;display:block;"
       onerror="this.parentNode.style.background='${fallbackColor}';this.outerHTML='<span style=\\"font-size:${fontSize}px;font-weight:700;color:#fff;font-family:Fraunces,serif;\\">${fallbackLetter}</span>'"
     />
   </div>`;
