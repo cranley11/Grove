@@ -106,8 +106,8 @@
     .job-card:hover { box-shadow: 0 6px 24px rgba(0,66,37,0.1), 0 0 0 1px rgba(0,66,37,0.08); transform: translateY(-2px); }
     .job-card:active { transform: scale(0.97) translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition-duration: 0.08s; }
     .job-card-top { display: flex; align-items: flex-start; gap: 12px; }
-    .job-logo { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #fff; flex-shrink: 0; font-family: 'Fraunces', serif; overflow: hidden; background: #e8f2ec; }
-    .job-logo img { width: 100%; height: 100%; object-fit: contain; padding: 6px; border-radius: 10px; background: #fff; }
+    .job-logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #fff; flex-shrink: 0; font-family: 'Fraunces', serif; overflow: hidden; }
+    .job-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .job-logo-fallback { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #fff; flex-shrink: 0; font-family: 'Fraunces', serif; }
     .job-meta { flex: 1; min-width: 0; }
     .job-title { font-size: 14px; font-weight: 600; line-height: 1.3; letter-spacing: -0.1px; color: var(--ink); }
@@ -1189,15 +1189,15 @@ function companyDomain(name) {
 }
 
 function logoHtml(company, size, directLogoUrl) {
-  const sz = size || 42;
-  const szLg = size === 48 ? 48 : 42;
+  const szLg = size || 44;
   const imgSrc = directLogoUrl || `https://logo.clearbit.com/${companyDomain(company)}`;
   const fallbackColor = logoColor(company);
   const fallbackLetter = logoLetter(company);
-  return `<div class="job-logo" style="width:${szLg}px;height:${szLg}px;background:#fff;border:1.5px solid #f0f0ee">
+  const fontSize = Math.round(szLg * 0.42);
+  return `<div class="job-logo" style="width:${szLg}px;height:${szLg}px;flex-shrink:0;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
     <img src="${esc(imgSrc)}" alt="${esc(company)}"
-      style="width:${szLg}px;height:${szLg}px;object-fit:contain;padding:5px;border-radius:9px"
-      onerror="this.parentNode.style.background='${fallbackColor}';this.parentNode.style.border='none';this.outerHTML='<span style=\"font-size:${Math.round(szLg*0.4)}px;font-weight:700;color:#fff;font-family:Fraunces,serif\">${fallbackLetter}</span>'"
+      style="width:${szLg}px;height:${szLg}px;object-fit:cover;display:block;"
+      onerror="this.parentNode.style.background='${fallbackColor}';this.outerHTML='<span style=\\"font-size:${fontSize}px;font-weight:700;color:#fff;font-family:Fraunces,serif;\\">${fallbackLetter}</span>'"
     />
   </div>`;
 }
