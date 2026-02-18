@@ -420,17 +420,38 @@
     .kb-col-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; padding: 0 4px; }
     .kb-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
     .kb-col-count { font-size: 11px; font-weight: 600; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .kb-card { background: var(--surface-raised); border-radius: 12px; padding: 12px 13px; margin-bottom: 8px; cursor: grab; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04); transition: box-shadow 0.15s, transform 0.15s; user-select: none; }
+    .kb-card { background: var(--surface-raised); border-radius: 12px; padding: 12px 13px; margin-bottom: 8px; cursor: grab; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04); transition: box-shadow 0.15s, transform 0.15s; user-select: none; position: relative; }
     .kb-card:active { cursor: grabbing; }
     .kb-card.dragging { opacity: 0.4; transform: rotate(2deg); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
     .kb-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.06); transform: translateY(-1px); }
-    .kb-card-title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 3px; }
-    .kb-card-co { font-size: 11px; color: var(--ink-muted); margin-bottom: 8px; }
+    .kb-card:hover .kb-card-del { opacity: 1; }
+    .kb-card-title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 3px; padding-right: 18px; }
+    .kb-card-co { font-size: 11px; color: var(--ink-muted); margin-bottom: 6px; }
+    .kb-card-footer { display: flex; align-items: center; justify-content: space-between; }
     .kb-card-date { font-size: 10px; color: var(--ink-faint); }
+    .kb-card-move { font-size: 10px; color: var(--ink-faint); border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 2px 6px; border-radius: 6px; transition: background 0.12s, color 0.12s; display: none; }
+    .kb-card-move:hover { background: var(--green-light); color: var(--green); }
+    @media (pointer: coarse) { .kb-card-move { display: inline-block; } }
     .kb-card-accent { height: 3px; border-radius: 2px; margin-bottom: 8px; }
+    .kb-card-del { position: absolute; top: 7px; right: 7px; width: 20px; height: 20px; border-radius: 50%; border: none; background: transparent; color: var(--ink-faint); font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.15s, background 0.15s, color 0.15s; padding: 0; line-height: 1; }
+    .kb-card-del:hover { background: #fee2e2; color: #ef4444; }
+    @media (pointer: coarse) { .kb-card-del { opacity: 0.5; } }
     .kb-empty { font-size: 12px; color: var(--ink-faint); text-align: center; padding: 24px 8px; font-style: italic; line-height: 1.6; }
     .kb-add { width: 100%; margin-top: 4px; padding: 8px; border: 1.5px dashed var(--border); border-radius: 10px; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ink-faint); cursor: pointer; transition: all 0.15s; }
     .kb-add:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
+    /* List delete button */
+    .app-del-btn { border: none; background: transparent; color: var(--ink-faint); font-size: 15px; cursor: pointer; padding: 5px 7px; border-radius: 6px; opacity: 0; transition: opacity 0.15s, color 0.15s, background 0.15s; flex-shrink: 0; line-height: 1; }
+    .app-card:hover .app-del-btn { opacity: 1; }
+    .app-del-btn:hover { color: #ef4444; background: #fee2e2; }
+    @media (pointer: coarse) { .app-del-btn { opacity: 0.5; } }
+    /* Move status sheet */
+    .move-sheet-opts { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+    .move-sheet-opt { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--surface); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; text-align: left; width: 100%; transition: all 0.12s; color: var(--ink); }
+    .move-sheet-opt:active { transform: scale(0.98); }
+    .move-sheet-opt.current { border-color: var(--green); background: var(--green-light); color: var(--green); }
+    .move-sheet-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .move-sheet-del { width: 100%; margin-top: 8px; padding: 13px; border-radius: 12px; border: 1.5px solid #fee2e2; background: #fff5f5; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #ef4444; cursor: pointer; transition: all 0.12s; }
+    .move-sheet-del:active { transform: scale(0.98); }
 
     /* ── Tracker header ── */
     .tracker-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 14px; }
@@ -1038,24 +1059,128 @@ function switchTab(tab) {
 
 // ── Company logo helpers (Clearbit) ──
 function companyDomain(name) {
-  // Best-effort: lowercase, remove spaces/punctuation, add .com
-  // Many well-known companies map well this way
   const known = {
+    // Big Tech
     'google': 'google.com', 'alphabet': 'google.com', 'meta': 'meta.com', 'facebook': 'meta.com',
     'apple': 'apple.com', 'microsoft': 'microsoft.com', 'amazon': 'amazon.com', 'netflix': 'netflix.com',
+    'nvidia': 'nvidia.com', 'intel': 'intel.com', 'amd': 'amd.com', 'qualcomm': 'qualcomm.com',
+    'ibm': 'ibm.com', 'oracle': 'oracle.com', 'sap': 'sap.com', 'dell': 'dell.com',
+    'hp': 'hp.com', 'hpe': 'hpe.com', 'cisco': 'cisco.com', 'vmware': 'vmware.com',
+    // Cloud & Infrastructure
+    'aws': 'aws.amazon.com', 'amazonwebservices': 'aws.amazon.com',
+    'azure': 'microsoft.com', 'googlecloud': 'cloud.google.com',
+    'digitalocean': 'digitalocean.com', 'cloudflare': 'cloudflare.com',
+    'fastly': 'fastly.com', 'akamai': 'akamai.com', 'rackspace': 'rackspace.com',
+    'heroku': 'heroku.com', 'netlify': 'netlify.com', 'vercel': 'vercel.com',
+    // SaaS / Productivity
     'stripe': 'stripe.com', 'shopify': 'shopify.com', 'airbnb': 'airbnb.com', 'uber': 'uber.com',
     'lyft': 'lyft.com', 'twitter': 'x.com', 'x': 'x.com', 'linkedin': 'linkedin.com',
     'salesforce': 'salesforce.com', 'hubspot': 'hubspot.com', 'notion': 'notion.so',
     'figma': 'figma.com', 'slack': 'slack.com', 'zoom': 'zoom.us', 'dropbox': 'dropbox.com',
-    'square': 'squareup.com', 'twilio': 'twilio.com', 'datadog': 'datadoghq.com',
-    'snowflake': 'snowflake.com', 'palantir': 'palantir.com', 'coinbase': 'coinbase.com',
-    'robinhood': 'robinhood.com', 'duolingo': 'duolingo.com', 'canva': 'canva.com',
-    'atlassian': 'atlassian.com', 'zendesk': 'zendesk.com', 'workday': 'workday.com',
+    'square': 'squareup.com', 'block': 'block.xyz', 'twilio': 'twilio.com',
+    'datadog': 'datadoghq.com', 'snowflake': 'snowflake.com', 'palantir': 'palantir.com',
+    'coinbase': 'coinbase.com', 'robinhood': 'robinhood.com', 'duolingo': 'duolingo.com',
+    'canva': 'canva.com', 'atlassian': 'atlassian.com', 'zendesk': 'zendesk.com',
+    'workday': 'workday.com', 'servicenow': 'servicenow.com', 'okta': 'okta.com',
+    'splunk': 'splunk.com', 'elastic': 'elastic.co', 'mongodb': 'mongodb.com',
+    'twitch': 'twitch.tv', 'discord': 'discord.com', 'reddit': 'reddit.com',
+    'pinterest': 'pinterest.com', 'snapchat': 'snap.com', 'snap': 'snap.com',
+    'tiktok': 'tiktok.com', 'bytedance': 'bytedance.com', 'spotify': 'spotify.com',
+    'adobe': 'adobe.com', 'autodesk': 'autodesk.com', 'intuit': 'intuit.com',
+    'turbotax': 'turbotax.intuit.com', 'quickbooks': 'quickbooks.intuit.com',
+    'asana': 'asana.com', 'monday': 'monday.com', 'clickup': 'clickup.com',
+    'airtable': 'airtable.com', 'miro': 'miro.com', 'linear': 'linear.app',
+    'jira': 'atlassian.com', 'confluence': 'atlassian.com', 'github': 'github.com',
+    'gitlab': 'gitlab.com', 'bitbucket': 'bitbucket.org', 'npm': 'npmjs.com',
+    'postman': 'postman.com', 'pagerduty': 'pagerduty.com', 'opsgenie': 'atlassian.com',
+    'newrelic': 'newrelic.com', 'sentry': 'sentry.io', 'segment': 'segment.com',
+    'mixpanel': 'mixpanel.com', 'amplitude': 'amplitude.com', 'heap': 'heap.io',
+    'hotjar': 'hotjar.com', 'intercom': 'intercom.com', 'drift': 'drift.com',
+    'zenefits': 'zenefits.com', 'gusto': 'gusto.com', 'rippling': 'rippling.com',
+    'bamboohr': 'bamboohr.com', 'adp': 'adp.com', 'paychex': 'paychex.com',
+    'greenhouse': 'greenhouse.io', 'lever': 'lever.co', 'workable': 'workable.com',
+    // Fintech
+    'paypal': 'paypal.com', 'venmo': 'venmo.com', 'cashapp': 'cash.app',
+    'braintree': 'braintreepayments.com', 'plaid': 'plaid.com', 'affirm': 'affirm.com',
+    'klarna': 'klarna.com', 'afterpay': 'afterpay.com', 'chime': 'chime.com',
+    'sofi': 'sofi.com', 'wealthfront': 'wealthfront.com', 'betterment': 'betterment.com',
+    'acorns': 'acorns.com', 'webull': 'webull.com', 'etrade': 'etrade.com',
+    'fidelity': 'fidelity.com', 'schwab': 'schwab.com', 'vanguard': 'vanguard.com',
+    'jpmorgan': 'jpmorgan.com', 'jpmorganchase': 'jpmorganchase.com', 'chase': 'chase.com',
+    'bankofamerica': 'bankofamerica.com', 'wellsfargo': 'wellsfargo.com',
+    'goldmansachs': 'goldmansachs.com', 'morganstanley': 'morganstanley.com',
+    'blackrock': 'blackrock.com', 'citadel': 'citadel.com', 'twosigma': 'twosigma.com',
+    'deshaw': 'deshaw.com', 'janestreet': 'janestreet.com', 'hudsonrivertrading': 'hudsonrivertrading.com',
+    // E-commerce & Retail
+    'ebay': 'ebay.com', 'etsy': 'etsy.com', 'walmart': 'walmart.com', 'target': 'target.com',
+    'costco': 'costco.com', 'bestbuy': 'bestbuy.com', 'wayfair': 'wayfair.com',
+    'chewy': 'chewy.com', 'instacart': 'instacart.com', 'doordash': 'doordash.com',
+    'grubhub': 'grubhub.com', 'ubereats': 'ubereats.com', 'postmates': 'postmates.com',
+    // Healthcare & Biotech
+    'unitedhealth': 'unitedhealthgroup.com', 'unitedhealthgroup': 'unitedhealthgroup.com',
+    'cvs': 'cvshealth.com', 'cvshealth': 'cvshealth.com', 'walgreens': 'walgreens.com',
+    'humana': 'humana.com', 'cigna': 'cigna.com', 'anthem': 'anthem.com',
+    'pfizer': 'pfizer.com', 'johnson': 'jnj.com', 'johnsonjohnson': 'jnj.com',
+    'abbvie': 'abbvie.com', 'merck': 'merck.com', 'lilly': 'lilly.com',
+    'modernatx': 'modernatx.com', 'moderna': 'modernatx.com', 'biontech': 'biontech.com',
+    'epic': 'epic.com', 'epicsystems': 'epic.com', 'cerner': 'cerner.com',
+    'veeva': 'veeva.com', 'flatiron': 'flatiron.com', 'tempus': 'tempus.com',
+    // Media & Entertainment
+    'disney': 'thewaltdisneycompany.com', 'waltdisney': 'thewaltdisneycompany.com',
+    'comcast': 'comcast.com', 'nbc': 'nbc.com', 'nbcuniversal': 'nbcuniversal.com',
+    'warnermedia': 'warnermediagroup.com', 'hbo': 'hbo.com',
+    'paramount': 'paramount.com', 'sony': 'sony.com', 'sonypictures': 'sonypictures.com',
+    'foxcorporation': 'foxcorporation.com', 'fox': 'fox.com',
+    'viacomcbs': 'viacomcbs.com', 'peacock': 'peacocktv.com',
+    // Consulting & Professional Services
+    'mckinsey': 'mckinsey.com', 'mckinseycompany': 'mckinsey.com',
+    'bcg': 'bcg.com', 'bostonConsultinggroup': 'bcg.com',
+    'bain': 'bain.com', 'baincompany': 'bain.com',
+    'deloitte': 'deloitte.com', 'pwc': 'pwc.com', 'kpmg': 'kpmg.com',
+    'ey': 'ey.com', 'ernstandyoung': 'ey.com', 'accenture': 'accenture.com',
+    'booz': 'boozallen.com', 'boozallen': 'boozallen.com',
+    'leidos': 'leidos.com', 'saic': 'saic.com', 'mitre': 'mitre.org',
+    // Automotive & Mobility
+    'tesla': 'tesla.com', 'ford': 'ford.com', 'gm': 'gm.com', 'generalmotors': 'gm.com',
+    'bmw': 'bmw.com', 'volkswagen': 'vw.com', 'toyota': 'toyota.com',
+    'rivian': 'rivian.com', 'lucidmotors': 'lucidmotors.com', 'lucid': 'lucidmotors.com',
+    'waymo': 'waymo.com', 'cruise': 'getcruise.com', 'zoox': 'zoox.com',
+    // AI & ML
+    'openai': 'openai.com', 'anthropic': 'anthropic.com', 'deepmind': 'deepmind.com',
+    'mistral': 'mistral.ai', 'cohere': 'cohere.com', 'ai21': 'ai21.com',
+    'huggingface': 'huggingface.co', 'scale': 'scale.com', 'scaleai': 'scale.com',
+    'databricks': 'databricks.com', 'weights': 'wandb.ai', 'wandb': 'wandb.ai',
+    // Aerospace & Defense
+    'spacex': 'spacex.com', 'boeing': 'boeing.com', 'lockheedmartin': 'lockheedmartin.com',
+    'northropgrumman': 'northropgrumman.com', 'raytheon': 'rtx.com', 'rtx': 'rtx.com',
+    'generaldynamics': 'gd.com', 'l3harris': 'l3harris.com', 'bae': 'baesystems.com',
+    // Other notable
+    'doordash': 'doordash.com', 'lyft': 'lyft.com', 'wework': 'wework.com',
+    'opendoor': 'opendoor.com', 'redfin': 'redfin.com', 'zillow': 'zillow.com',
+    'expedia': 'expedia.com', 'booking': 'booking.com', 'airbnb': 'airbnb.com',
+    'tripadvisor': 'tripadvisor.com', 'yelp': 'yelp.com', 'grubhub': 'grubhub.com',
+    'roblox': 'roblox.com', 'epicgames': 'epicgames.com', 'unity': 'unity.com',
+    'ea': 'ea.com', 'electronicarts': 'ea.com', 'activision': 'activision.com',
+    'blizzard': 'blizzard.com', 'ubisoft': 'ubisoft.com', 'valve': 'valvesoftware.com',
   };
-  const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-  if (known[key]) return known[key];
-  // Fallback: slug.com
-  return name.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/inc|llc|corp|ltd/g, '') + '.com';
+
+  // Normalize: lowercase, strip common legal suffixes and punctuation
+  const normalized = name.toLowerCase()
+    .replace(/\b(inc|llc|corp|ltd|co|company|group|technologies|technology|tech|solutions|services|systems|software|global|international|holdings|ventures|partners|labs|studio|studios)\b/g, '')
+    .replace(/[^a-z0-9]/g, '');
+
+  if (known[normalized]) return known[normalized];
+
+  // Try the raw key without suffix stripping too
+  const rawKey = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (known[rawKey]) return known[rawKey];
+
+  // Try first word only (e.g. "Acme Corp" → "acme")
+  const firstWord = name.toLowerCase().split(/[\s,.()/]+/)[0].replace(/[^a-z0-9]/g, '');
+  if (known[firstWord] && firstWord.length > 2) return known[firstWord];
+
+  // Fallback: normalized slug + .com (strip legal suffixes for cleaner domain)
+  return normalized.replace(/(inc|llc|corp|ltd|co)$/g, '') + '.com' || rawKey + '.com';
 }
 
 function logoHtml(company, size) {
@@ -1540,10 +1665,14 @@ function renderTracker() {
       const apps = applications.filter(function(a) { return a.status === col.status; });
       const cards = apps.map(function(a) {
         return '<div class="kb-card" draggable="true" data-id="' + a.id + '" data-status="' + col.status + '">'
+          + '<button class="kb-card-del" onclick="event.stopPropagation();deleteApp(' + a.id + ')" title="Remove">✕</button>'
           + '<div class="kb-card-accent" style="background:' + col.color + '"></div>'
           + '<div class="kb-card-title">' + esc(a.title) + '</div>'
           + '<div class="kb-card-co">' + esc(a.company) + '</div>'
+          + '<div class="kb-card-footer">'
           + '<div class="kb-card-date">' + esc(a.date) + '</div>'
+          + '<button class="kb-card-move" onclick="event.stopPropagation();showMoveSheet(' + a.id + ')">Move ›</button>'
+          + '</div>'
           + '</div>';
       }).join('');
       const emptyHtml = apps.length === 0 ? '<div class="kb-empty">' + col.empty + '</div>' : '';
@@ -1582,7 +1711,10 @@ function renderTracker() {
         + (a.notes ? '<div class="app-notes">' + esc(a.notes) + '</div>' : '')
         + '</div>'
         + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">'
+        + '<div style="display:flex;align-items:center;gap:4px">'
         + '<div class="app-date">' + esc(a.date) + '</div>'
+        + '<button class="app-del-btn" onclick="deleteApp(' + a.id + ')" title="Remove">✕</button>'
+        + '</div>'
         + '<select class="status-select" onchange="updateStatus(' + a.id + ',this.value)" style="color:' + sc.text + '">'
         + statuses.map(function(st) { return '<option value="' + st + '"' + (a.status === st ? ' selected' : '') + '>' + st + '</option>'; }).join('')
         + '</select>'
@@ -1601,6 +1733,54 @@ function renderTracker() {
 function updateStatus(id, status) {
   const a = applications.find(a=>a.id===id);
   if (a) { a.status = status; saveApps(); render(); }
+}
+
+function deleteApp(id) {
+  const a = applications.find(a=>a.id===id);
+  if (!a) return;
+  if (!confirm('Remove "' + a.title + '" at ' + a.company + '?')) return;
+  applications = applications.filter(a=>a.id!==id);
+  saveApps(); render();
+  toast('Removed ✓');
+}
+
+function showMoveSheet(id) {
+  const a = applications.find(x=>x.id===id);
+  if (!a) return;
+  const colDefs = [
+    { status:'Saved',        color:'#8B5CF6' },
+    { status:'Applied',      color:'#4F46E5' },
+    { status:'Interviewing', color:'#D97706' },
+    { status:'Offer',        color:'#16A34A' },
+    { status:'Rejected',     color:'#9CA3AF' },
+  ];
+  const opts = colDefs.map(function(c) {
+    const isCurrent = a.status === c.status;
+    return '<button class="move-sheet-opt' + (isCurrent ? ' current' : '') + '" onclick="moveAppTo(' + id + ',\'' + c.status + '\')">'
+      + '<span class="move-sheet-dot" style="background:' + c.color + '"></span>'
+      + c.status
+      + (isCurrent ? ' <span style="margin-left:auto;font-size:12px;opacity:0.6">current</span>' : '')
+      + '</button>';
+  }).join('');
+  showModal('<div class="modal-sheet">'
+    + '<div class="modal-handle"></div>'
+    + '<h3 style="margin-bottom:4px">' + esc(a.title) + '</h3>'
+    + '<p style="font-size:13px;color:var(--ink-muted);margin-bottom:16px">' + esc(a.company) + '</p>'
+    + '<div class="move-sheet-opts">' + opts + '</div>'
+    + '<button class="move-sheet-del" onclick="deleteApp(' + id + ');closeModal()">Remove from pipeline</button>'
+    + '</div>');
+}
+
+function moveAppTo(id, status) {
+  const a = applications.find(x=>x.id===id);
+  if (!a) return;
+  const prev = a.status;
+  a.status = status;
+  saveApps();
+  closeModal();
+  if (status === 'Offer' && prev !== 'Offer') { setTimeout(triggerConfetti, 100); }
+  toast(a.company + ' → ' + status + ' ✓');
+  render();
 }
 
 function showAddModal() {
