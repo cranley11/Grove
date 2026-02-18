@@ -1054,6 +1054,11 @@ function switchTab(tab) {
   const lbl = document.getElementById('topbar-page-label');
   if (lbl) lbl.textContent = TAB_LABELS[tab] || '';
   render();
+  // Auto-load jobs the first time we open the search tab
+  if (tab === 'search' && jobs.length === 0 && !jobsLoading) {
+    fetchJobs('', 'All').then(result => { jobs = result; updateJobsArea(); });
+    jobsLoading = true; updateJobsArea();
+  }
 }
 
 
@@ -1183,57 +1188,69 @@ function companyDomain(name) {
   return normalized.replace(/(inc|llc|corp|ltd|co)$/g, '') + '.com' || rawKey + '.com';
 }
 
-function logoHtml(company, size) {
+function logoHtml(company, size, directLogoUrl) {
   const sz = size || 42;
   const szLg = size === 48 ? 48 : 42;
-  const domain = companyDomain(company);
+  const imgSrc = directLogoUrl || `https://logo.clearbit.com/${companyDomain(company)}`;
   const fallbackColor = logoColor(company);
   const fallbackLetter = logoLetter(company);
-  const imgId = 'logo-' + Math.random().toString(36).slice(2,8);
   return `<div class="job-logo" style="width:${szLg}px;height:${szLg}px;background:#fff;border:1.5px solid #f0f0ee">
-    <img id="${imgId}" src="https://logo.clearbit.com/${domain}" alt="${esc(company)}"
+    <img src="${esc(imgSrc)}" alt="${esc(company)}"
       style="width:${szLg}px;height:${szLg}px;object-fit:contain;padding:5px;border-radius:9px"
       onerror="this.parentNode.style.background='${fallbackColor}';this.parentNode.style.border='none';this.outerHTML='<span style=\"font-size:${Math.round(szLg*0.4)}px;font-weight:700;color:#fff;font-family:Fraunces,serif\">${fallbackLetter}</span>'"
     />
   </div>`;
 }
 // ─────────────────────────────────────────
-// THE MUSE API
+// REMOTIVE API  (free, no key, CORS-open)
 // ─────────────────────────────────────────
 const CATEGORIES = ['All','Engineering','Design','Marketing','Data & Analytics','Product','Sales','Finance','Operations'];
 
-async function fetchJobsRaw(query, category, page) {
-  // Fetch one page from The Muse — no location param (unreliable), we filter client-side
+// Map Grove display categories → Remotive category slugs
+const REMOTIVE_CAT_MAP = {
+  'Engineering':       'software-dev',
+  'Design':            'design',
+  'Marketing':         'marketing',
+  'Data & Analytics':  'data',
+  'Product':           'product',
+  'Sales':             'sales',
+  'Finance':           'finance',
+  'Operations':        'all-others',
+};
+
+async function fetchJobsRaw(query, category) {
   try {
-    let url = `https://www.themuse.com/api/public/jobs?page=${page||1}&descending=true`;
-    if (query) url += `&query=${encodeURIComponent(query)}`;
-    if (category && category !== 'All') url += `&category=${encodeURIComponent(category)}`;
+    let url = 'https://remotive.com/api/remote-jobs?limit=50';
+    const slug = REMOTIVE_CAT_MAP[category];
+    if (slug && slug !== 'all-others') url += `&category=${encodeURIComponent(slug)}`;
+    if (query) url += `&search=${encodeURIComponent(query)}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    return (data.results || []).map(j => ({
+    return (data.jobs || []).map(j => ({
       id: j.id,
-      title: j.name || 'Untitled',
-      company: j.company?.name || 'Unknown',
-      location: (j.locations||[]).map(l=>l.name).join(', ') || 'Flexible / Remote',
-      level: (j.levels||[]).map(l=>l.name).join(', '),
-      category: (j.categories||[]).map(c=>c.name).join(', '),
-      url: j.refs?.landing_page || '#',
-      description: stripHtml(j.contents || ''),
-      isRemote: (j.locations||[]).some(l => /remote|flexible/i.test(l.name)),
+      title: j.title || 'Untitled',
+      company: j.company_name || 'Unknown',
+      companyLogo: j.company_logo || null,
+      location: j.candidate_required_location || 'Remote / Worldwide',
+      level: '',
+      category: j.category || '',
+      salary: j.salary || '',
+      jobType: j.job_type || '',
+      url: j.url || '#',
+      description: stripHtml(j.description || '').slice(0, 600),
+      isRemote: true,
     }));
   } catch(e) {
     console.error('Fetch error:', e);
-    return null; // null = network error
+    return null;
   }
 }
 
-async function fetchJobs(query, category, page) {
+async function fetchJobs(query, category) {
   jobsLoading = true;
   try {
-    // If multiple fields selected, fetch for first category matching API categories
-    const apiCategory = (category && category !== 'All') ? category : '';
-    const result = await fetchJobsRaw(query || '', apiCategory, page || 1);
+    const result = await fetchJobsRaw(query || '', category || 'All');
     if (result === null) { toast('Could not load jobs — check your connection'); return []; }
     return applyClientFilters(result);
   } finally {
@@ -1435,25 +1452,25 @@ function renderHome() {
 // ─────────────────────────────────────────
 function jobsAreaHtml() {
   if (jobsLoading) return `<div class="loader"><div class="spinner"></div><span>Finding jobs…</span></div>`;
-  if (jobs.length === 0) return `<div class="empty">No results yet.<br><br>Try searching above or tap a category.</div>`;
+  if (jobs.length === 0) return `<div class="empty">No jobs found.<br><br>Try a different search term or category.</div>`;
   return `<div class="jobs-list">` + jobs.map(j => {
     const accentColor = logoColor(j.company);
-    const salary = blsSalaryForTitle(j.title);
+    const salaryDisplay = j.salary || (blsSalaryForTitle(j.title) ? `≈ ${formatSalary(blsSalaryForTitle(j.title))}/yr` : null);
     return `
     <div class="job-card">
       <div class="job-card-accent" style="background:${accentColor}"></div>
       <div class="job-card-body">
         <div class="job-card-top">
-          ${logoHtml(j.company)}
+          ${logoHtml(j.company, null, j.companyLogo)}
           <div class="job-meta" style="flex:1;min-width:0">
             <div class="job-title">${esc(j.title)}</div>
             <div class="job-company">${esc(j.company)}</div>
-            ${salary ? `<div class="job-salary-badge">≈ ${formatSalary(salary)}<span style="font-weight:400;opacity:0.7">/yr</span></div>` : ''}
+            ${salaryDisplay ? `<div class="job-salary-badge">${esc(salaryDisplay)}</div>` : ''}
           </div>
         </div>
         <div class="job-tags" style="margin-bottom:12px">
           ${j.location?`<span class="tag">${esc(j.location.split(',')[0])}</span>`:''}
-          ${j.level?`<span class="tag">${esc(j.level)}</span>`:''}
+          ${j.jobType?`<span class="tag">${esc(j.jobType.replace('_',' '))}</span>`:''}
           ${j.category?`<span class="tag">${esc(j.category.split(',')[0])}</span>`:''}
         </div>
         <div class="job-card-actions">
@@ -1512,14 +1529,14 @@ async function doSearch() {
   const inp = document.getElementById('search-input');
   jobsQuery = inp ? inp.value.trim() : jobsQuery;
   jobsLoading = true; updateJobsArea();
-  jobs = await fetchJobs(jobsQuery, jobsCategory, 1);
+  jobs = await fetchJobs(jobsQuery, jobsCategory);
   updateJobsArea();
 }
 
 async function setCategory(cat) {
   jobsCategory = cat;
   jobsLoading = true; updateJobsArea();
-  jobs = await fetchJobs(jobsQuery, jobsCategory, 1);
+  jobs = await fetchJobs(jobsQuery, jobsCategory);
   updateJobsArea();
 }
 
@@ -1539,7 +1556,7 @@ function openJobDetail(id) {
     <div class="modal-sheet">
       <div class="modal-handle"></div>
       <div class="job-detail-header">
-        ${logoHtml(j.company, 48)}
+        ${logoHtml(j.company, 48, j.companyLogo)}
         <div><h2>${esc(j.title)}</h2><div class="job-detail-co">${esc(j.company)}</div></div>
       </div>
       <div class="job-tags" style="margin-bottom:4px">
@@ -1550,7 +1567,7 @@ function openJobDetail(id) {
       </div>
       ${j.description?`<p class="job-detail-desc">${esc(j.description)}…</p>`:''}
       <button class="detail-btn primary" onclick="openApplyFlow('${j.id}')">✦ Apply with Resume Helper</button>
-      <button class="detail-btn secondary" onclick="window.open('${esc(j.url)}','_blank')">View on The Muse ↗</button>
+      <button class="detail-btn secondary" onclick="window.open('${esc(j.url)}','_blank')">View on Remotive ↗</button>
       <button class="detail-btn outline" onclick="trackJob('${j.id}')">+ Save to Tracker</button>
     </div>`);
 }
