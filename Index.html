@@ -22,7 +22,6 @@
       --ink: #0D0D0D;
       --ink-muted: #6B6B6B;
       --ink-faint: #C4C4C0;
-      --surface: #FAF7F2;
       --border: #E8E4DC;
       --red: #C0392B;
       --amber: #D4780A;
@@ -1707,14 +1706,8 @@ function renderTracker() {
     return header + '<div class="kb-wrap"><div class="kb-board">' + cols + '</div></div>';
   }
 
-  // List view
-  const sectionColors = {
-    Saved: { bar:'#8B5CF6', bg:'#F5F3FF', text:'#5B21B6' },
-    Applied: { bar:'#4F46E5', bg:'#EEF2FF', text:'#4F46E5' },
-    Interviewing: { bar:'#D97706', bg:'#FFF7ED', text:'#C2410C' },
-    Offer: { bar:'#16A34A', bg:'#F0FDF4', text:'#166534' },
-    Rejected: { bar:'#9CA3AF', bg:'#F9FAFB', text:'#6B7280' },
-  };
+  // List view — reuse colDefs colour data (bar = color)
+  const sectionColors = Object.fromEntries(colDefs.map(c => [c.status, { bar: c.color, bg: c.bg, text: c.text }]));
 
   const sectionsHtml = statuses.map(function(s) {
     const apps = applications.filter(function(a) { return a.status === s; });
@@ -2071,6 +2064,7 @@ function attachLiveEvents() {
   const si = document.getElementById('search-input');
   if (si) si.addEventListener('keydown', e => { if (e.key==='Enter') doSearch(); });
   setupDropZone();
+  if (document.querySelector('.kb-board')) initKanban();
 }
 
 
@@ -2349,10 +2343,6 @@ function checkPwStrength(pw) {
   });
   const lbl = document.getElementById('pw-label');
   if (lbl) { lbl.textContent = pw.length === 0 ? '' : labels[score - 1] || 'Too short'; lbl.style.color = score >= 3 ? '#16a34a' : score === 2 ? '#D4780A' : '#C0392B'; }
-}
-
-function pwScore(pw) {
-  return [pw.length >= 8, /[A-Z]/.test(pw), /[0-9]/.test(pw), /[^A-Za-z0-9]/.test(pw)].filter(Boolean).length;
 }
 
 async function doSignIn() {
