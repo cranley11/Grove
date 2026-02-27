@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Grove - auto-deployed via Claude -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +34,7 @@
     html, body { height: 100%; background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; overflow: hidden; -webkit-font-smoothing: antialiased; }
     #app { display: flex; flex-direction: column; height: 100%; height: 100dvh; }
 
-    /* ── Onboarding ── */
+    /* ââ Onboarding ââ */
     #onboarding { position: fixed; inset: 0; background: var(--cream); z-index: 500; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
     .ob-header { padding: 56px 24px 0; flex-shrink: 0; }
     .ob-logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; color: var(--green); margin-bottom: 32px; }
@@ -65,13 +66,13 @@
     .ob-back { width: 100%; padding: 10px; background: transparent; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink-faint); cursor: pointer; margin-top: 8px; }
     .ob-skip { font-size: 13px; color: var(--ink-faint); text-align: center; display: block; cursor: pointer; margin-top: 6px; }
 
-    /* ── Prefs banner ── */
+    /* ââ Prefs banner ââ */
     .prefs-banner { background: var(--surface-raised); border-radius: 12px; padding: 11px 15px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 0 0 1px rgba(0,0,0,0.05); }
     .prefs-tags { display: flex; gap: 5px; flex-wrap: wrap; flex: 1; }
     .prefs-tag { font-size: 11px; padding: 3px 9px; border-radius: 100px; background: var(--green); color: #fff; font-weight: 500; letter-spacing: 0.02em; }
     .prefs-edit { font-size: 12px; color: var(--ink-muted); border: none; background: transparent; cursor: pointer; font-family: 'DM Sans', sans-serif; flex-shrink: 0; padding: 4px 8px; }
 
-    /* ── Main app ── */
+    /* ââ Main app ââ */
     /* topbar base styles moved to Ambient Topbar section */
     .topbar-row { display: flex; align-items: center; justify-content: space-between; }
     .topbar-logo-btn { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -81,7 +82,7 @@
     .settings-btn { background: none; border: none; cursor: pointer; padding: 6px; color: var(--ink-faint); border-radius: 8px; transition: color 0.1s, background 0.1s; margin-top: 0; flex-shrink: 0; }
     .settings-btn:hover { color: var(--green); background: var(--green-light); }
 
-    /* ── Tab bar ── */
+    /* ââ Tab bar ââ */
     .tab-bar { display: flex; background: var(--surface); border-top: 1px solid var(--border); flex-shrink: 0; padding: 0 4px; padding-bottom: env(safe-area-inset-bottom, 0px); position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; box-shadow: 0 -4px 24px rgba(0,0,0,0.06); }
     .tab-btn { flex: 1; padding: 10px 4px 8px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; color: var(--ink-faint); cursor: pointer; border-top: 2px solid transparent; transition: all 0.18s cubic-bezier(0.34,1.56,0.64,1); display: flex; flex-direction: column; align-items: center; gap: 3px; letter-spacing: 0.03em; text-transform: uppercase; }
     .tab-btn.active { color: var(--green); border-top-color: var(--green); }
@@ -90,7 +91,7 @@
     .content { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0 18px 16px; padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
     .content.home-content { padding: 0 16px; padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 
-    /* ── Search ── */
+    /* ââ Search ââ */
     .search-row { display: flex; gap: 8px; margin-bottom: 12px; }
     .search-input { flex: 1; padding: 13px 16px; border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--surface-raised); outline: none; color: var(--ink); box-shadow: 0 0 0 1px rgba(0,0,0,0.07); transition: box-shadow 0.15s; }
     .search-input:focus { box-shadow: 0 0 0 2px rgba(0,66,37,0.35); }
@@ -100,7 +101,7 @@
     .filter-pill { padding: 7px 15px; border: none; border-radius: 100px; background: var(--surface-raised); box-shadow: 0 0 0 1px rgba(0,0,0,0.06); font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ink-muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; font-weight: 500; }
     .filter-pill.active { background: var(--green); color: #fff; box-shadow: 0 2px 8px rgba(0,66,37,0.3); }
 
-    /* ── Job cards ── */
+    /* ââ Job cards ââ */
     .jobs-list { display: flex; flex-direction: column; gap: 12px; }
     .job-card { background: var(--surface-raised); border-radius: 16px; padding: 18px; cursor: pointer; transition: all 0.18s cubic-bezier(0.2,0,0,1); box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04); }
     .job-card:hover { box-shadow: 0 6px 24px rgba(0,66,37,0.1), 0 0 0 1px rgba(0,66,37,0.08); transform: translateY(-2px); }
@@ -119,13 +120,13 @@
     .btn-sm.primary { background: var(--green); color: #fff; box-shadow: 0 2px 8px rgba(0,66,37,0.25); }
     .btn-sm:active { transform: scale(0.96); opacity: 0.9; transition-duration: 0.06s; }
 
-    /* ── States ── */
+    /* ââ States ââ */
     .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; color: var(--ink-faint); gap: 12px; }
     .spinner { width: 22px; height: 22px; border: 2px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .empty { text-align: center; padding: 48px 20px; color: var(--ink-faint); font-size: 14px; line-height: 1.7; }
 
-    /* ── Tracker ── */
+    /* ââ Tracker ââ */
     .tracker-section-label { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; }
     .tracker-section-label .tsl-count { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 100px; }
     .tracker-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 4px; }
@@ -146,7 +147,7 @@
     .app-date { font-size: 10px; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
     .status-select { font-size: 11px; padding: 5px 9px; border: none; border-radius: 100px; background: var(--cream); font-family: 'DM Sans', sans-serif; cursor: pointer; outline: none; flex-shrink: 0; font-weight: 600; color: var(--ink-muted); box-shadow: 0 0 0 1px rgba(0,0,0,0.08); }
 
-    /* ── Resume ── */
+    /* ââ Resume ââ */
     .rtabs { display: flex; gap: 4px; margin-bottom: 18px; background: var(--cream); border: 1.5px solid var(--border); border-radius: 10px; padding: 3px; }
     .rtab { flex: 1; padding: 8px 12px; border-radius: 100px; border: none; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer; color: var(--ink-muted); transition: all 0.15s; font-weight: 500; text-align: center; letter-spacing: 0.02em; }
     .rtab.active { background: var(--green); color: #fff; box-shadow: 0 2px 8px rgba(0,66,37,0.25); font-weight: 600; }
@@ -170,7 +171,7 @@
     .fill-copy { font-size: 11px; color: var(--green); border: 1px solid var(--green-light); background: var(--green-light); cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 4px 10px; border-radius: 5px; flex-shrink: 0; font-weight: 600; transition: all 0.1s; }
     .fill-copy:hover { background: var(--green); color: #fff; }
 
-    /* ── Resume Drop Zone ── */
+    /* ââ Resume Drop Zone ââ */
     .resume-dropzone { border: 2px dashed var(--border); border-radius: 14px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.15s; background: var(--surface); margin-bottom: 14px; position: relative; }
     .resume-dropzone:hover, .resume-dropzone.drag-over { border-color: var(--green); background: var(--green-light); }
     .resume-dropzone.drag-over { transform: scale(1.01); box-shadow: 0 0 0 4px rgba(0,66,37,0.08); }
@@ -190,7 +191,7 @@
     .parsing-overlay { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #FFF7ED; border: 1.5px solid #FED7AA; border-radius: 12px; margin-bottom: 12px; }
     .parsing-overlay .ps-text { font-size: 13px; color: #C2410C; font-weight: 500; }
 
-    /* ── Modal ── */
+    /* ââ Modal ââ */
     .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; display: flex; align-items: flex-end; backdrop-filter: blur(2px); }
     .modal-sheet { background: var(--surface-raised); border-radius: 26px 26px 0 0; padding: 26px 22px; padding-bottom: calc(26px + env(safe-area-inset-bottom, 0px)); width: 100%; max-height: 92dvh; overflow-y: auto; box-shadow: 0 -8px 40px rgba(0,0,0,0.12); }
     .modal-handle { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 22px; }
@@ -203,7 +204,7 @@
     .btn-cancel { flex: 1; padding: 13px; border: 1.5px solid var(--border); border-radius: 11px; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; color: var(--ink-muted); font-weight: 500; }
     .btn-confirm { flex: 1; padding: 13px; border: none; border-radius: 11px; background: var(--green); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.01em; }
 
-    /* ── Job detail ── */
+    /* ââ Job detail ââ */
     .job-detail-header { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
     .job-detail-header h2 { font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.25; font-weight: 700; letter-spacing: -0.3px; }
     .job-detail-co { font-size: 14px; color: var(--ink-muted); margin-top: 3px; }
@@ -214,7 +215,7 @@
     .detail-btn.secondary { background: var(--cream); color: var(--ink); border: 1.5px solid var(--border); }
     .detail-btn.outline { background: transparent; border: 1.5px solid var(--border); color: var(--ink-muted); }
 
-    /* ── API Key ── */
+    /* ââ API Key ââ */
     .api-key-banner { display: flex; align-items: center; gap: 10px; background: #FFFBEB; border: 1.5px solid #FDE68A; border-radius: 12px; padding: 11px 14px; margin-bottom: 14px; cursor: pointer; }
     .api-key-banner .akb-icon { font-size: 16px; flex-shrink: 0; }
     .api-key-banner .akb-text { font-size: 12px; color: #92400E; flex: 1; line-height: 1.4; }
@@ -228,11 +229,11 @@
     .key-hint { font-size: 11px; color: var(--ink-faint); margin-top: 6px; line-height: 1.6; }
     .key-hint a { color: var(--green); }
 
-    /* ── Toast ── */
+    /* ââ Toast ââ */
     .toast { position: fixed; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%) translateY(6px); background: var(--ink); color: #fff; padding: 11px 22px; border-radius: 100px; font-size: 13px; font-weight: 500; z-index: 600; opacity: 0; transition: opacity 0.25s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; white-space: nowrap; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ── Animations ── */
+    /* ââ Animations ââ */
     .slide-in { animation: slideIn 0.22s cubic-bezier(0.22,1,0.36,1) forwards; }
     @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -242,7 +243,7 @@
     .fade-up-3 { animation-delay: 0.15s; }
     .fade-up-4 { animation-delay: 0.2s; }
 
-    /* ── Welcome Page ── */
+    /* ââ Welcome Page ââ */
     .welcome-wrap { padding-top: 0; }
     .welcome-hero { background: linear-gradient(135deg, #004225 0%, #005a33 60%, #006b3c 100%); border-radius: 22px; padding: 36px 26px 30px; margin-bottom: 18px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0,66,37,0.2); }
     .welcome-hero::before { display: none; }
@@ -268,7 +269,7 @@
     .welcome-tip { background: var(--cream); border-radius: 12px; padding: 14px 16px; font-size: 12px; color: var(--ink-muted); line-height: 1.65; border: 1px solid var(--border); }
     .welcome-tip strong { color: var(--green); }
 
-    /* ── Auth Screen ── */
+    /* ââ Auth Screen ââ */
     #auth-screen { position: fixed; inset: 0; background: var(--cream); z-index: 900; display: flex; flex-direction: column; overflow-y: auto; }
     .auth-wrap { min-height: 100dvh; display: flex; flex-direction: column; }
     .auth-hero { background: var(--green); padding: 56px 28px 40px; position: relative; overflow: hidden; flex-shrink: 0; }
@@ -327,7 +328,7 @@
     .user-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; font-family: 'Fraunces', serif; flex-shrink: 0; }
     .user-name { font-size: 12px; font-weight: 500; color: var(--green); max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    /* ── Redesigned Home ── */
+    /* ââ Redesigned Home ââ */
     .home-wrap { padding: 0; }
     .home-hero { background: linear-gradient(145deg, #003d20 0%, #005a33 55%, #007040 100%); margin: 0 -18px; padding: 28px 22px 32px; position: relative; overflow: hidden; }
     .home-hero-topo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
@@ -382,7 +383,7 @@
     .home-recent-co { font-size: 11px; color: var(--ink-muted); margin-top: 1px; }
     .home-recent-status { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 100px; flex-shrink: 0; }
 
-    /* ── Redesigned Job Cards ── */
+    /* ââ Redesigned Job Cards ââ */
     .job-card { background: var(--surface-raised); border-radius: 18px; padding: 0; cursor: pointer; transition: all 0.18s cubic-bezier(0.2,0,0,1); box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04); overflow: hidden; }
     .job-card:hover { box-shadow: 0 8px 28px rgba(0,66,37,0.1), 0 0 0 1px rgba(0,66,37,0.08); transform: translateY(-2px); }
     .job-card:active { transform: scale(0.97) translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition-duration: 0.06s; }
@@ -391,7 +392,7 @@
     .job-card-top { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 12px; }
     .job-salary-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #166534; background: #F0FDF4; padding: 3px 10px; border-radius: 100px; margin-top: 8px; }
 
-    /* ── Dark Mode ── */
+    /* ââ Dark Mode ââ */
     body.dark {
       --cream: #0F1410;
       --surface: #161D18;
@@ -411,7 +412,7 @@
     body.dark .auth-form { background: var(--surface); }
     body.dark .ob-text-input { background: var(--surface-raised); color: var(--ink); border-color: var(--border); }
 
-    /* ── Kanban Board ── */
+    /* ââ Kanban Board ââ */
     .kb-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; margin: 0 -18px; padding-left: 18px; scrollbar-width: none; }
     .kb-wrap::-webkit-scrollbar { display: none; }
     .kb-board { display: flex; gap: 10px; width: max-content; padding-right: 18px; }
@@ -453,7 +454,7 @@
     .move-sheet-del { width: 100%; margin-top: 8px; padding: 13px; border-radius: 12px; border: 1.5px solid #fee2e2; background: #fff5f5; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #ef4444; cursor: pointer; transition: all 0.12s; }
     .move-sheet-del:active { transform: scale(0.98); }
 
-    /* ── Tracker header ── */
+    /* ââ Tracker header ââ */
     .tracker-top { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 14px; }
     .tracker-top-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
     .tracker-top-right { display: flex; align-items: center; gap: 8px; }
@@ -461,7 +462,7 @@
     .tvt-btn { padding: 5px 10px; border-radius: 6px; border: none; background: transparent; cursor: pointer; font-size: 13px; transition: all 0.12s; color: var(--ink-faint); }
     .tvt-btn.active { background: var(--surface-raised); color: var(--green); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 
-    /* ── Match Score ── */
+    /* ââ Match Score ââ */
     .match-score-box { background: var(--surface-raised); border-radius: 16px; padding: 18px; margin-top: 14px; box-shadow: 0 0 0 1px rgba(0,0,0,0.05); }
     .match-score-box h4 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px; }
     .match-score-box p { font-size: 12px; color: var(--ink-muted); margin-bottom: 14px; line-height: 1.55; }
@@ -479,27 +480,27 @@
     .score-gap-dot { width: 6px; height: 6px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
     .score-gap-dot.green { background: #22C55E; }
 
-    /* ── Empty States ── */
+    /* ââ Empty States ââ */
     .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 52px 24px; text-align: center; }
     .empty-state-art { margin-bottom: 20px; }
     .empty-state-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 8px; }
     .empty-state-sub { font-size: 13px; color: var(--ink-muted); line-height: 1.65; max-width: 240px; font-weight: 300; }
     .empty-state-btn { margin-top: 20px; padding: 11px 24px; background: var(--green); color: #fff; border: none; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 10px rgba(0,66,37,0.25); }
 
-    /* ── Confetti ── */
+    /* ââ Confetti ââ */
     .confetti-piece { position: fixed; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; z-index: 9999; animation: confettiFall linear forwards; }
     @keyframes confettiFall {
       0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
 
-    /* ── Dark Mode Toggle ── */
+    /* ââ Dark Mode Toggle ââ */
     .dark-toggle { width: 36px; height: 20px; background: var(--border); border-radius: 10px; position: relative; cursor: pointer; border: none; transition: background 0.2s; flex-shrink: 0; }
     .dark-toggle.on { background: var(--green); }
     .dark-toggle-thumb { width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left 0.15s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     .dark-toggle.on .dark-toggle-thumb { left: 18px; }
 
-    /* ── Ambient Topbar ── */
+    /* ââ Ambient Topbar ââ */
     .topbar {
       padding: 52px 20px 14px;
       background: var(--cream);
@@ -560,7 +561,7 @@
       100% { transform: translate(0px, 0px) scale(1); }
     }
 
-    /* Grain overlay — SVG feTurbulence noise */
+    /* Grain overlay â SVG feTurbulence noise */
     .tb-grain {
       position: absolute;
       inset: -50%;
@@ -664,7 +665,7 @@
   <div class="ob-step" id="ob-step"></div>
   <div class="ob-footer">
     <button class="ob-next" id="ob-next" onclick="obNext()">Continue</button>
-    <button class="ob-back" id="ob-back" onclick="obBack()" style="display:none">← Back</button>
+    <button class="ob-back" id="ob-back" onclick="obBack()" style="display:none">â Back</button>
     <span class="ob-skip" onclick="obSkip()">Skip setup</span>
   </div>
 </div>
@@ -679,7 +680,7 @@
       </div>
       <div class="auth-headline">Your career,<br>finally organised.</div>
       <div class="auth-sub">Search smarter, track everything,<br>and land the job.</div>
-      <div class="auth-demo-badge">⚡ Demo mode — data stays on your device</div>
+      <div class="auth-demo-badge">â¡ Demo mode â data stays on your device</div>
     </div>
     <div class="auth-body">
       <div class="auth-tabs">
@@ -696,11 +697,11 @@
         </div>
         <div class="auth-field">
           <label class="auth-label">Password</label>
-          <input class="auth-input" id="si-pw" type="password" placeholder="••••••••" autocomplete="current-password" />
+          <input class="auth-input" id="si-pw" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="current-password" />
           <div class="auth-error" id="si-pw-err"></div>
         </div>
         <div class="auth-error" id="si-general-err" style="margin-bottom:8px;font-size:13px"></div>
-        <button class="auth-submit" onclick="doSignIn()">Sign In →</button>
+        <button class="auth-submit" onclick="doSignIn()">Sign In â</button>
         <div class="auth-footer-note">
           Don't have an account? <a onclick="authSwitchTab('up')" style="cursor:pointer">Create one free</a>
         </div>
@@ -721,17 +722,17 @@
         </div>
         <div class="auth-field">
           <label class="auth-label">Password</label>
-          <input class="auth-input" id="su-pw" type="password" placeholder="••••••••" autocomplete="new-password" />
+          <input class="auth-input" id="su-pw" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="new-password" />
 
           <div class="auth-error" id="su-pw-err"></div>
         </div>
         <div class="auth-field">
           <label class="auth-label">Confirm Password</label>
-          <input class="auth-input" id="su-pw2" type="password" placeholder="••••••••" autocomplete="new-password" />
+          <input class="auth-input" id="su-pw2" type="password" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" autocomplete="new-password" />
           <div class="auth-error" id="su-pw2-err"></div>
         </div>
         <div class="auth-error" id="su-general-err" style="margin-bottom:8px;font-size:13px"></div>
-        <button class="auth-submit" onclick="doSignUp()">Create Account →</button>
+        <button class="auth-submit" onclick="doSignUp()">Create Account â</button>
         <div class="auth-footer-note">
           Already have an account? <a onclick="authSwitchTab('in')" style="cursor:pointer">Sign in</a>
         </div>
@@ -748,10 +749,10 @@
 </div>
 
 <script>
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // STATE
 
-// ── Welcome greeting ──
+// ââ Welcome greeting ââ
 function setWelcomeGreeting() {
   const hour = new Date().getHours();
   const greetings = hour < 12
@@ -769,10 +770,10 @@ function setWelcomeGreeting() {
   const g = document.getElementById('welcome-greeting');
   const h = document.getElementById('welcome-headline');
   const firstName = currentUser ? ', ' + currentUser.name.split(' ')[0] : '';
-  if (g) g.textContent = greetings[Math.floor(Math.random() * greetings.length)] + firstName + ' 👋';
+  if (g) g.textContent = greetings[Math.floor(Math.random() * greetings.length)] + firstName + ' ð';
   if (h) h.innerHTML = headlines[Math.floor(Math.random() * headlines.length)].replace('\n','<br>');
 }
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 let currentTab = 'home';
 let jobs = [];
 let jobsLoading = false;
@@ -789,7 +790,7 @@ let coverContext = '';
 let prefs = {
   fields: [],       // job fields/categories
   levels: [],       // experience levels
-  payRanges: [],    // e.g. ["$80k–$100k", "$100k–$130k"]
+  payRanges: [],    // e.g. ["$80kâ$100k", "$100kâ$130k"]
   remote: false,    // fully remote only
   location: '',     // city/region if not remote
   companySize: [],  // company size preferences
@@ -799,7 +800,7 @@ let resumeParseStatus = null; // null | 'parsing' | 'done' | 'error'
 let resumeParseMsg = '';
 let resumeFileName = '';
 
-// ── API Key ──
+// ââ API Key ââ
 let apiKey = '';
 try { apiKey = localStorage.getItem('jw_api_key') || ''; } catch(e) {}
 function saveApiKey() { try { localStorage.setItem('jw_api_key', apiKey); } catch(e) {} }
@@ -818,18 +819,18 @@ function saveResume(){ try { localStorage.setItem('jw_resume', resumeText); } ca
 
 function defaultResume() {
   return `Jane Doe
-jane@email.com • (555) 123-4567 • linkedin.com/in/janedoe
+jane@email.com â¢ (555) 123-4567 â¢ linkedin.com/in/janedoe
 
 EXPERIENCE
-Product Designer — Acme Corp (2021–Present)
-• Led redesign of core product increasing retention by 24%
-• Managed design system used by 15 engineers
+Product Designer â Acme Corp (2021âPresent)
+â¢ Led redesign of core product increasing retention by 24%
+â¢ Managed design system used by 15 engineers
 
-Junior Designer — Studio XYZ (2019–2021)
-• Delivered 20+ client projects across web and mobile
+Junior Designer â Studio XYZ (2019â2021)
+â¢ Delivered 20+ client projects across web and mobile
 
 EDUCATION
-B.F.A. Graphic Design — State University, 2019
+B.F.A. Graphic Design â State University, 2019
 
 SKILLS
 Figma, Sketch, Prototyping, User Research, HTML/CSS`;
@@ -853,9 +854,9 @@ function toast(msg) {
   setTimeout(() => el.classList.remove('show'), 2200);
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // ONBOARDING
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 const OB_STEPS = [
   {
     id: 'field',
@@ -878,7 +879,7 @@ const OB_STEPS = [
     q: 'What\'s your target pay range?',
     hint: 'Select all ranges you\'d consider.',
     type: 'multi',
-    options: ['Under $60k','$60k–$80k','$80k–$100k','$100k–$130k','$130k–$160k','$160k–$200k','$200k+','No preference'],
+    options: ['Under $60k','$60kâ$80k','$80kâ$100k','$100kâ$130k','$130kâ$160k','$160kâ$200k','$200k+','No preference'],
     key: 'payRanges',
   },
   {
@@ -893,7 +894,7 @@ const OB_STEPS = [
     q: 'What size company suits you?',
     hint: 'Select all that interest you.',
     type: 'multi',
-    options: ['Startup (1–50)','Small (51–200)','Mid-size (201–1k)','Large (1k–10k)','Enterprise (10k+)','No preference'],
+    options: ['Startup (1â50)','Small (51â200)','Mid-size (201â1k)','Large (1kâ10k)','Enterprise (10k+)','No preference'],
     key: 'companySize',
   },
 ];
@@ -939,7 +940,7 @@ function renderOnboarding() {
     content += `
       <div style="margin-bottom:14px;position:relative">
         <label style="font-size:11px;font-weight:500;color:#aaa;text-transform:uppercase;letter-spacing:0.07em;display:block;margin-bottom:6px">Your city or region</label>
-        <input class="ob-text-input" id="ob-location" placeholder="e.g. New York, Austin, London…" value="${esc(prefs.location)}" autocomplete="off" oninput="locationTyped(this.value)" />
+        <input class="ob-text-input" id="ob-location" placeholder="e.g. New York, Austin, Londonâ¦" value="${esc(prefs.location)}" autocomplete="off" oninput="locationTyped(this.value)" />
         <div id="loc-suggestions" style="background:#fff;border:1.5px solid #E5E5E3;border-top:none;border-radius:0 0 12px 12px;overflow:hidden;display:none;position:absolute;left:0;right:0;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,0.08)"></div>
         <p style="font-size:12px;color:#bbb;margin-top:5px">Leave blank to search everywhere.</p>
       </div>
@@ -964,7 +965,7 @@ function updateObNextBtn() {
   const step = OB_STEPS[obStep];
   const btn = document.getElementById('ob-next');
   const isLast = obStep === OB_STEPS.length - 1;
-  btn.textContent = isLast ? 'Find my jobs →' : 'Continue';
+  btn.textContent = isLast ? 'Find my jobs â' : 'Continue';
 
   // Enable if something selected or optional step
   let enabled = true;
@@ -1038,9 +1039,9 @@ async function autoSearchFromPrefs() {
   render();
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // MAIN APP
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 const TAB_LABELS = { home: '', search: 'Jobs', tracker: 'Track', resume: 'Resume' };
 
 function switchTab(tab) {
@@ -1062,7 +1063,7 @@ function switchTab(tab) {
 }
 
 
-// ── Company logo helpers (Clearbit) ──
+// ââ Company logo helpers (Clearbit) ââ
 function companyDomain(name) {
   const known = {
     // Big Tech
@@ -1180,7 +1181,7 @@ function companyDomain(name) {
   const rawKey = name.toLowerCase().replace(/[^a-z0-9]/g, '');
   if (known[rawKey]) return known[rawKey];
 
-  // Try first word only (e.g. "Acme Corp" → "acme")
+  // Try first word only (e.g. "Acme Corp" â "acme")
   const firstWord = name.toLowerCase().split(/[\s,.()/]+/)[0].replace(/[^a-z0-9]/g, '');
   if (known[firstWord] && firstWord.length > 2) return known[firstWord];
 
@@ -1202,12 +1203,12 @@ function logoHtml(company, size, directLogoUrl) {
     />
   </div>`;
 }
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // REMOTIVE API  (free, no key, CORS-open)
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 const CATEGORIES = ['All','Engineering','Design','Marketing','Data & Analytics','Product','Sales','Finance','Operations'];
 
-// Map Grove display categories → Remotive category slugs
+// Map Grove display categories â Remotive category slugs
 const REMOTIVE_CAT_MAP = {
   'Engineering':       'software-dev',
   'Design':            'design',
@@ -1252,7 +1253,7 @@ async function fetchJobs(query, category) {
   jobsLoading = true;
   try {
     const result = await fetchJobsRaw(query || '', category || 'All');
-    if (result === null) { toast('Could not load jobs — check your connection'); return []; }
+    if (result === null) { toast('Could not load jobs â check your connection'); return []; }
     return applyClientFilters(result);
   } finally {
     jobsLoading = false;
@@ -1265,7 +1266,7 @@ function applyClientFilters(list) {
   // Level filter: only drop if job HAS level data AND none of selected levels match
   if (prefs.levels.length > 0) {
     out = out.filter(j => {
-      if (!j.level) return true; // no level info — keep it
+      if (!j.level) return true; // no level info â keep it
       const jl = j.level.toLowerCase();
       return prefs.levels.some(l => {
         const key = l.toLowerCase().replace(' level','').trim();
@@ -1308,7 +1309,7 @@ function buildPrefsLabel() {
 }
 
 
-// ── BLS Salary data (cached) ──
+// ââ BLS Salary data (cached) ââ
 const BLS_SALARIES = {
   // SOC-based median annual wages (BLS 2023, Occupational Employment Survey)
   'engineer': 104000, 'software engineer': 130160, 'developer': 130160,
@@ -1338,9 +1339,9 @@ function formatSalary(n) {
   if (!n) return null;
   return '$' + (n >= 1000 ? Math.round(n/1000) + 'k' : n);
 }
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // RENDER
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function render() {
   const el = document.getElementById('content');
   if (!el) return;
@@ -1354,9 +1355,9 @@ function render() {
   attachLiveEvents();
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // HOME TAB
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function renderHome() {
   const appCount = applications.length;
   const interviewCount = applications.filter(a => a.status === 'Interviewing').length;
@@ -1398,9 +1399,9 @@ function renderHome() {
       + '</div>'
     : '';
 
-  const tipIcon = hasKey ? '💡' : '⚙️';
+  const tipIcon = hasKey ? 'ð¡' : 'âï¸';
   const tipText = hasKey
-    ? '<strong>Pro tip:</strong> Find a role → tap Apply → get a tailored cover letter in seconds.'
+    ? '<strong>Pro tip:</strong> Find a role â tap Apply â get a tailored cover letter in seconds.'
     : '<strong>Add your API key</strong> via settings to unlock AI cover letters.';
 
   const trackDesc = appCount > 0 ? appCount + ' tracked' : 'Stay organised';
@@ -1448,15 +1449,15 @@ function renderHome() {
 }
 
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // SEARCH TAB
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function jobsAreaHtml() {
-  if (jobsLoading) return `<div class="loader"><div class="spinner"></div><span>Finding jobs…</span></div>`;
+  if (jobsLoading) return `<div class="loader"><div class="spinner"></div><span>Finding jobsâ¦</span></div>`;
   if (jobs.length === 0) return `<div class="empty">No jobs found.<br><br>Try a different search term or category.</div>`;
   return `<div class="jobs-list">` + jobs.map(j => {
     const accentColor = logoColor(j.company);
-    const salaryDisplay = j.salary || (blsSalaryForTitle(j.title) ? `≈ ${formatSalary(blsSalaryForTitle(j.title))}/yr` : null);
+    const salaryDisplay = j.salary || (blsSalaryForTitle(j.title) ? `â ${formatSalary(blsSalaryForTitle(j.title))}/yr` : null);
     return `
     <div class="job-card">
       <div class="job-card-accent" style="background:${accentColor}"></div>
@@ -1499,8 +1500,8 @@ function updateJobsArea() {
 }
 
 function apiKeyBanner() {
-  if (apiKey) return `<div class="api-key-banner api-key-set"><span class="akb-icon">✓</span><span class="akb-text">API key saved — AI features active</span><button style="font-size:11px;color:#888;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="showApiKeyModal()">Change</button></div>`;
-  return `<div class="api-key-banner" onclick="showApiKeyModal()"><span class="akb-icon">🔑</span><div class="akb-text"><strong>Add your Anthropic API key</strong> to enable cover letter generation and resume parsing.</div><span class="akb-link">Set key →</span></div>`;
+  if (apiKey) return `<div class="api-key-banner api-key-set"><span class="akb-icon">â</span><span class="akb-text">API key saved â AI features active</span><button style="font-size:11px;color:#888;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="showApiKeyModal()">Change</button></div>`;
+  return `<div class="api-key-banner" onclick="showApiKeyModal()"><span class="akb-icon">ð</span><div class="akb-text"><strong>Add your Anthropic API key</strong> to enable cover letter generation and resume parsing.</div><span class="akb-link">Set key â</span></div>`;
 }
 
 function renderSearch() {
@@ -1508,7 +1509,7 @@ function renderSearch() {
   const prefsBanner = prefsTags.length ? `
     <div class="prefs-banner">
       <div class="prefs-tags">${prefsTags.map(t=>`<span class="prefs-tag">${esc(t)}</span>`).join('')}</div>
-      <button class="prefs-edit" onclick="reopenOnboarding()">Edit ✎</button>
+      <button class="prefs-edit" onclick="reopenOnboarding()">Edit â</button>
     </div>` : '';
 
   const cats = CATEGORIES.map(c =>
@@ -1519,7 +1520,7 @@ function renderSearch() {
     ${apiKeyBanner()}
     ${prefsBanner}
     <div class="search-row">
-      <input class="search-input" id="search-input" placeholder="Search roles or companies…" value="${esc(jobsQuery)}" />
+      <input class="search-input" id="search-input" placeholder="Search roles or companiesâ¦" value="${esc(jobsQuery)}" />
       <button class="search-btn" onclick="doSearch()">Search</button>
     </div>
     <div class="filters">${cats}</div>
@@ -1564,11 +1565,11 @@ function openJobDetail(id) {
         ${j.location?`<span class="tag">${esc(j.location)}</span>`:''}
         ${j.level?`<span class="tag">${esc(j.level)}</span>`:''}
         ${j.category?`<span class="tag">${esc(j.category)}</span>`:''}
-        ${(()=>{ const s = blsSalaryForTitle(j.title); return s ? `<span class="tag" style="background:#F0FDF4;color:#166534">≈ ${formatSalary(s)}/yr market rate</span>` : ''; })()}
+        ${(()=>{ const s = blsSalaryForTitle(j.title); return s ? `<span class="tag" style="background:#F0FDF4;color:#166534">â ${formatSalary(s)}/yr market rate</span>` : ''; })()}
       </div>
-      ${j.description?`<p class="job-detail-desc">${esc(j.description)}…</p>`:''}
-      <button class="detail-btn primary" onclick="openApplyFlow('${j.id}')">✦ Apply with Resume Helper</button>
-      <button class="detail-btn secondary" onclick="window.open('${esc(j.url)}','_blank')">View on Remotive ↗</button>
+      ${j.description?`<p class="job-detail-desc">${esc(j.description)}â¦</p>`:''}
+      <button class="detail-btn primary" onclick="openApplyFlow('${j.id}')">â¦ Apply with Resume Helper</button>
+      <button class="detail-btn secondary" onclick="window.open('${esc(j.url)}','_blank')">View on Remotive â</button>
       <button class="detail-btn outline" onclick="trackJob('${j.id}')">+ Save to Tracker</button>
     </div>`);
 }
@@ -1580,7 +1581,7 @@ function trackJob(id) {
   applications.unshift({ id: Date.now(), sourceId: String(j.id), title: j.title, company: j.company, date: todayLabel(), status: 'Saved', notes: '', url: j.url });
   saveApps();
   closeModal();
-  toast('Saved to tracker ✓');
+  toast('Saved to tracker â');
 }
 
 function openApplyFlow(id) {
@@ -1588,13 +1589,13 @@ function openApplyFlow(id) {
   if (!j) return;
   const existing = applications.find(a => a.sourceId === String(j.id));
   if (existing) {
-    // Already applied — show confirmation modal
+    // Already applied â show confirmation modal
     const dateLabel = existing.date || 'a previous session';
     showModal(`
       <div class="modal-sheet">
         <div class="modal-handle"></div>
         <div style="text-align:center;padding:8px 0 20px">
-          <div style="font-size:36px;margin-bottom:12px">🌿</div>
+          <div style="font-size:36px;margin-bottom:12px">ð¿</div>
           <h3 style="margin-bottom:8px">Looks like you already applied</h3>
           <p style="font-size:14px;color:var(--ink-muted);line-height:1.6;margin-bottom:4px">
             You tracked <strong>${esc(j.title)}</strong> at <strong>${esc(j.company)}</strong> as
@@ -1602,7 +1603,7 @@ function openApplyFlow(id) {
           </p>
           <p style="font-size:13px;color:var(--ink-faint);margin-bottom:24px">Applied: ${esc(dateLabel)}</p>
           <div style="display:flex;flex-direction:column;gap:8px">
-            <button class="detail-btn primary" onclick="doApplyAgain('${j.id}')">Apply Again — Reset Tracker</button>
+            <button class="detail-btn primary" onclick="doApplyAgain('${j.id}')">Apply Again â Reset Tracker</button>
             <button class="detail-btn secondary" onclick="closeModal()">Got it, I'm done here</button>
           </div>
         </div>
@@ -1621,7 +1622,7 @@ function doFreshApply(j) {
   coverLetter = '';
   resumeSubTab = 'cover';
   switchTab('resume');
-  toast('Added to tracker — good luck! 🌿');
+  toast('Added to tracker â good luck! ð¿');
 }
 
 function doApplyAgain(id) {
@@ -1638,9 +1639,9 @@ function todayLabel() {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // TRACKER TAB
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function renderTracker() {
   const statuses = ['Saved','Applied','Interviewing','Offer','Rejected'];
   const counts = {};
@@ -1649,16 +1650,16 @@ function renderTracker() {
   const colDefs = [
     { status:'Saved',        color:'#8B5CF6', bg:'#F5F3FF', text:'#5B21B6', empty:'Drop roles here to save for later' },
     { status:'Applied',      color:'#4F46E5', bg:'#EEF2FF', text:'#4F46E5', empty:'Applied roles appear here' },
-    { status:'Interviewing', color:'#D97706', bg:'#FFF7ED', text:'#C2410C', empty:'Fingers crossed 🤞' },
-    { status:'Offer',        color:'#16A34A', bg:'#F0FDF4', text:'#166534', empty:'Offers land here 🎉' },
+    { status:'Interviewing', color:'#D97706', bg:'#FFF7ED', text:'#C2410C', empty:'Fingers crossed ð¤' },
+    { status:'Offer',        color:'#16A34A', bg:'#F0FDF4', text:'#166534', empty:'Offers land here ð' },
     { status:'Rejected',     color:'#9CA3AF', bg:'#F9FAFB', text:'#6B7280', empty:'Onwards and upwards' },
   ];
 
   const isKanban = trackerView === 'kanban';
 
   const viewToggle = '<div class="tracker-view-toggle">'
-    + '<button class="tvt-btn' + (!isKanban ? ' active' : '') + '" onclick="setTrackerView(&quot;list&quot;)">☰</button>'
-    + '<button class="tvt-btn' + (isKanban ? ' active' : '') + '" onclick="setTrackerView(&quot;kanban&quot;)">⊞</button>'
+    + '<button class="tvt-btn' + (!isKanban ? ' active' : '') + '" onclick="setTrackerView(&quot;list&quot;)">â°</button>'
+    + '<button class="tvt-btn' + (isKanban ? ' active' : '') + '" onclick="setTrackerView(&quot;kanban&quot;)">â</button>'
     + '</div>';
 
   const header = '<div class="tracker-top">'
@@ -1674,7 +1675,7 @@ function renderTracker() {
       + '<div class="empty-state-art">' + emptyTrackerSvg() + '</div>'
       + '<div class="empty-state-title">Your pipeline is empty</div>'
       + '<div class="empty-state-sub">Search for jobs and tap "+ Track" to start building your pipeline.</div>'
-      + '<button class="empty-state-btn" onclick="switchTab(&quot;search&quot;)">Browse Jobs →</button>'
+      + '<button class="empty-state-btn" onclick="switchTab(&quot;search&quot;)">Browse Jobs â</button>'
       + '</div>';
   }
 
@@ -1683,13 +1684,13 @@ function renderTracker() {
       const apps = applications.filter(function(a) { return a.status === col.status; });
       const cards = apps.map(function(a) {
         return '<div class="kb-card" draggable="true" data-id="' + a.id + '" data-status="' + col.status + '">'
-          + '<button class="kb-card-del" onclick="event.stopPropagation();deleteApp(' + a.id + ')" title="Remove">✕</button>'
+          + '<button class="kb-card-del" onclick="event.stopPropagation();deleteApp(' + a.id + ')" title="Remove">â</button>'
           + '<div class="kb-card-accent" style="background:' + col.color + '"></div>'
           + '<div class="kb-card-title">' + esc(a.title) + '</div>'
           + '<div class="kb-card-co">' + esc(a.company) + '</div>'
           + '<div class="kb-card-footer">'
           + '<div class="kb-card-date">' + esc(a.date) + '</div>'
-          + '<button class="kb-card-move" onclick="event.stopPropagation();showMoveSheet(' + a.id + ')">Move ›</button>'
+          + '<button class="kb-card-move" onclick="event.stopPropagation();showMoveSheet(' + a.id + ')">Move âº</button>'
           + '</div>'
           + '</div>';
       }).join('');
@@ -1731,7 +1732,7 @@ function renderTracker() {
         + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">'
         + '<div style="display:flex;align-items:center;gap:4px">'
         + '<div class="app-date">' + esc(a.date) + '</div>'
-        + '<button class="app-del-btn" onclick="deleteApp(' + a.id + ')" title="Remove">✕</button>'
+        + '<button class="app-del-btn" onclick="deleteApp(' + a.id + ')" title="Remove">â</button>'
         + '</div>'
         + '<select class="status-select" onchange="updateStatus(' + a.id + ',this.value)" style="color:' + sc.text + '">'
         + statuses.map(function(st) { return '<option value="' + st + '"' + (a.status === st ? ' selected' : '') + '>' + st + '</option>'; }).join('')
@@ -1759,7 +1760,7 @@ function deleteApp(id) {
   if (!confirm('Remove "' + a.title + '" at ' + a.company + '?')) return;
   applications = applications.filter(a=>a.id!==id);
   saveApps(); render();
-  toast('Removed ✓');
+  toast('Removed â');
 }
 
 function showMoveSheet(id) {
@@ -1797,7 +1798,7 @@ function moveAppTo(id, status) {
   saveApps();
   closeModal();
   if (status === 'Offer' && prev !== 'Offer') { setTimeout(triggerConfetti, 100); }
-  toast(a.company + ' → ' + status + ' ✓');
+  toast(a.company + ' â ' + status + ' â');
   render();
 }
 
@@ -1810,7 +1811,7 @@ function showAddModal() {
       <div class="form-field"><label class="form-label">Company</label><input class="form-input" id="m-company" placeholder="e.g. Notion" /></div>
       <div class="form-field"><label class="form-label">Status</label>
         <select class="form-select" id="m-status">${Object.keys(STATUS_COLORS).map(s=>`<option>${s}</option>`).join('')}</select></div>
-      <div class="form-field"><label class="form-label">Notes</label><input class="form-input" id="m-notes" placeholder="Optional…" /></div>
+      <div class="form-field"><label class="form-label">Notes</label><input class="form-input" id="m-notes" placeholder="Optionalâ¦" /></div>
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeModal()">Cancel</button>
         <button class="btn-confirm" onclick="confirmAdd()">Add</button>
@@ -1829,9 +1830,9 @@ function confirmAdd() {
   switchTab('tracker');
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // RESUME TAB
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function renderResume() {
   const tabs = [
     { k:'resume', v:'My Resume' },
@@ -1844,9 +1845,9 @@ function renderResume() {
   if (resumeSubTab === 'resume') {
     let statusBanner = '';
     if (resumeParseStatus === 'parsing') {
-      statusBanner = `<div class="parsing-overlay"><div class="spinner" style="width:16px;height:16px;border-color:#fed7aa;border-top-color:#C2410C;flex-shrink:0"></div><span class="ps-text">Reading your resume…</span></div>`;
+      statusBanner = `<div class="parsing-overlay"><div class="spinner" style="width:16px;height:16px;border-color:#fed7aa;border-top-color:#C2410C;flex-shrink:0"></div><span class="ps-text">Reading your resumeâ¦</span></div>`;
     } else if (resumeParseStatus === 'done') {
-      statusBanner = `<div class="parse-status"><span class="ps-icon">✓</span><div><div class="ps-text">Parsed successfully</div><div class="ps-sub">${esc(resumeFileName)} — edit below if needed</div></div></div>`;
+      statusBanner = `<div class="parse-status"><span class="ps-icon">â</span><div><div class="ps-text">Parsed successfully</div><div class="ps-sub">${esc(resumeFileName)} â edit below if needed</div></div></div>`;
     } else if (resumeParseStatus === 'error') {
       statusBanner = `<div class="parse-status parse-error"><span class="ps-icon">X</span><div><div class="ps-text">Couldn't parse that file</div><div class="ps-sub">${esc(resumeParseMsg)}</div></div></div>`;
     }
@@ -1855,7 +1856,7 @@ function renderResume() {
       ${statusBanner}
       <div class="resume-dropzone" id="resume-dropzone">
         <input type="file" id="resume-file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleResumeFile(this.files[0])" />
-        <div class="dz-icon">📄</div>
+        <div class="dz-icon">ð</div>
         <div class="dz-title">Upload your resume</div>
         <div class="dz-hint">Drag & drop or tap to browse</div>
         <div class="dz-types">
@@ -1870,13 +1871,13 @@ function renderResume() {
   } else if (resumeSubTab === 'cover') {
     const hasKey = !!apiKey;
     const btnContent = generating
-      ? `<div class="spinner" style="width:16px;height:16px;border-color:rgba(255,255,255,0.3);border-top-color:#fff"></div> Generating…`
-      : '✦ Generate Cover Letter';
+      ? `<div class="spinner" style="width:16px;height:16px;border-color:rgba(255,255,255,0.3);border-top-color:#fff"></div> Generatingâ¦`
+      : 'â¦ Generate Cover Letter';
     const noKeyNotice = !hasKey ? `
       <div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:12px 14px;margin-bottom:14px">
-        <span style="font-size:16px">🔑</span>
+        <span style="font-size:16px">ð</span>
         <div style="flex:1;font-size:12px;color:#92400E;line-height:1.5">Add your <strong>Anthropic API key</strong> in Settings to enable AI generation.</div>
-        <button onclick="showApiKeyModal()" style="font-size:12px;color:var(--green);font-weight:600;background:none;border:none;cursor:pointer;white-space:nowrap">Add key →</button>
+        <button onclick="showApiKeyModal()" style="font-size:12px;color:var(--green);font-weight:600;background:none;border:none;cursor:pointer;white-space:nowrap">Add key â</button>
       </div>` : '';
     body = `
       ${noKeyNotice}
@@ -1889,12 +1890,12 @@ function renderResume() {
         : (!generating ? `<p style="font-size:12px;color:var(--ink-faint);margin-top:14px;text-align:center;line-height:1.6">Your resume is included automatically.</p>` : '')}`;
   } else if (resumeSubTab === 'match') {
     const hasKey = !!apiKey;
-    const noKeyNotice = !hasKey ? '<div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:12px 14px;margin-bottom:14px"><span style="font-size:16px">🔑</span><div style="flex:1;font-size:12px;color:#92400E;line-height:1.5">Add your <strong>Anthropic API key</strong> to enable match scoring.</div><button onclick="showApiKeyModal()" style="font-size:12px;color:var(--green);font-weight:600;background:none;border:none;cursor:pointer;white-space:nowrap">Add key →</button></div>' : '';
+    const noKeyNotice = !hasKey ? '<div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:12px;padding:12px 14px;margin-bottom:14px"><span style="font-size:16px">ð</span><div style="flex:1;font-size:12px;color:#92400E;line-height:1.5">Add your <strong>Anthropic API key</strong> to enable match scoring.</div><button onclick="showApiKeyModal()" style="font-size:12px;color:var(--green);font-weight:600;background:none;border:none;cursor:pointer;white-space:nowrap">Add key â</button></div>' : '';
     body = noKeyNotice
       + '<div class="section-label">Job Description</div>'
       + '<p style="font-size:12px;color:var(--ink-muted);margin-bottom:10px;line-height:1.55">Paste the full job description to score how well your resume matches it.</p>'
-      + '<textarea id="match-jd" rows="6" placeholder="Paste job description here…"></textarea>'
-      + '<button class="generate-btn" style="margin-top:10px" onclick="runMatchScore()" ' + (!hasKey ? 'disabled' : '') + '>✦ Score My Match</button>'
+      + '<textarea id="match-jd" rows="6" placeholder="Paste job description hereâ¦"></textarea>'
+      + '<button class="generate-btn" style="margin-top:10px" onclick="runMatchScore()" ' + (!hasKey ? 'disabled' : '') + '>â¦ Score My Match</button>'
       + '<div id="match-score-area"></div>';
   } else {
     const fields = parseFields(resumeText);
@@ -1964,7 +1965,7 @@ async function generateCL() {
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
         messages: [{ role:'user', content:
-          `Write a concise, compelling cover letter in 3 short paragraphs. Professional and personalized. Return only the cover letter text — no subject line, no extra formatting.\n\nJob: ${coverContext||'a role at a tech company'}\n\nResume:\n${resumeText}` }]
+          `Write a concise, compelling cover letter in 3 short paragraphs. Professional and personalized. Return only the cover letter text â no subject line, no extra formatting.\n\nJob: ${coverContext||'a role at a tech company'}\n\nResume:\n${resumeText}` }]
       })
     });
     if (!res.ok) {
@@ -1973,7 +1974,7 @@ async function generateCL() {
       coverLetter = msg;
     } else {
       const data = await res.json();
-      coverLetter = data.content?.[0]?.text || 'Could not generate — please try again.';
+      coverLetter = data.content?.[0]?.text || 'Could not generate â please try again.';
     }
   } catch(e) { coverLetter = 'Generation failed. Check your connection and API key.'; }
   generating = false; render();
@@ -1981,20 +1982,20 @@ async function generateCL() {
 
 function copyCL() {
   const el = document.getElementById('cl-out');
-  if (el) navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied ✓'));
+  if (el) navigator.clipboard.writeText(el.textContent).then(()=>toast('Copied â'));
 }
 
 function copyField(btn, val) {
   navigator.clipboard.writeText(val).then(() => {
-    const orig = btn.textContent; btn.textContent = '✓';
+    const orig = btn.textContent; btn.textContent = 'â';
     setTimeout(()=>btn.textContent=orig, 1500);
-    toast('Copied ✓');
+    toast('Copied â');
   });
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // API KEY MODAL
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function showDarkModeInSettings() {
   const btn = document.getElementById('dark-toggle-btn');
   if (btn) btn.className = 'dark-toggle' + (darkMode ? ' on' : '');
@@ -2037,12 +2038,12 @@ function toggleKeyVisibility() {
 function saveApiKeyFromModal() {
   const val = (document.getElementById('api-key-input')?.value || '').trim();
   if (!val) { toast('Please enter an API key'); return; }
-  if (!val.startsWith('sk-ant-')) { toast('Key should start with sk-ant-…'); return; }
+  if (!val.startsWith('sk-ant-')) { toast('Key should start with sk-ant-â¦'); return; }
   apiKey = val;
   saveApiKey();
   closeModal();
   render();
-  toast('API key saved ✓');
+  toast('API key saved â');
 }
 
 function clearApiKey() {
@@ -2053,18 +2054,18 @@ function clearApiKey() {
   toast('API key cleared');
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // MODAL
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function showModal(html) {
   document.getElementById('modal-inner').innerHTML = html;
   document.getElementById('modal-bg').style.display = 'flex';
 }
 function closeModal() { document.getElementById('modal-bg').style.display = 'none'; }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // LIVE EVENTS
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function attachLiveEvents() {
   const ta = document.getElementById('resume-ta');
   if (ta) ta.addEventListener('input', () => { resumeText = ta.value; saveResume(); });
@@ -2074,9 +2075,9 @@ function attachLiveEvents() {
 }
 
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // LOCATION AUTOCOMPLETE (Nominatim)
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 let locTimer = null;
 
 function locationTyped(val) {
@@ -2139,9 +2140,9 @@ function selectLocation(label) {
   updateObNextBtn();
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // RESUME FILE UPLOAD & PARSING
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 function setupDropZone() {
   const dz = document.getElementById('resume-dropzone');
   if (!dz) return;
@@ -2249,8 +2250,8 @@ async function extractTextFromDocx(file) {
 }
 
 async function parseResumeWithClaude(plainText) {
-  if (!apiKey) throw new Error('No API key set — tap the ⚙ icon to add your Anthropic key.');
-  const PROMPT = 'Extract and reformat this resume into clean plain text. Preserve ALL information. Put the person\'s name and contact info at the top, then use clear sections: EXPERIENCE, EDUCATION, SKILLS, etc. Return ONLY the formatted resume — no commentary, no markdown symbols.';
+  if (!apiKey) throw new Error('No API key set â tap the â icon to add your Anthropic key.');
+  const PROMPT = 'Extract and reformat this resume into clean plain text. Preserve ALL information. Put the person\'s name and contact info at the top, then use clear sections: EXPERIENCE, EDUCATION, SKILLS, etc. Return ONLY the formatted resume â no commentary, no markdown symbols.';
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -2281,13 +2282,13 @@ async function parseResumeWithClaude(plainText) {
   saveResume();
   resumeParseStatus = 'done';
   render();
-  toast('Resume imported ✓');
+  toast('Resume imported â');
 }
 
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // AUTH (Demo Mode)
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 let currentUser = null;
 
 function authGetUsers() {
@@ -2298,7 +2299,7 @@ function authSaveSession(u) { try { localStorage.setItem('grove_session', JSON.s
 function authClearSession() { try { localStorage.removeItem('grove_session'); } catch(e) {} }
 function authGetSession() { try { return JSON.parse(localStorage.getItem('grove_session') || 'null'); } catch(e) { return null; } }
 
-// Simple hash (demo only — not cryptographically safe)
+// Simple hash (demo only â not cryptographically safe)
 async function demoHash(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str + 'grove_salt_v1'));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -2340,7 +2341,7 @@ function checkPwStrength(pw) {
   const score = [hasLen, hasUpper, hasNum, hasSpecial].filter(Boolean).length;
   const bars = ['pwb1','pwb2','pwb3','pwb4'];
   const levels = ['weak','fair','good','strong'];
-  const labels = ['Too weak','Fair','Good','Strong 💪'];
+  const labels = ['Too weak','Fair','Good','Strong ðª'];
   const colors = ['weak','fair','good','strong'];
 
   bars.forEach((id, i) => {
@@ -2540,15 +2541,15 @@ function showAccountModal() {
         </div>
       </div>
       <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:10px 14px;font-size:12px;color:#92400E;margin-bottom:20px;line-height:1.5">
-        ⚡ <strong>Demo mode</strong> — your data is stored locally. Connect Firebase to sync across devices.
+        â¡ <strong>Demo mode</strong> â your data is stored locally. Connect Firebase to sync across devices.
       </div>
       <button class="detail-btn outline" onclick="closeModal();signOut()" style="color:var(--red);border-color:#FECACA">Sign Out</button>
     </div>`);
 }
 
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // INIT
-// ─────────────────────────────────────────
+// âââââââââââââââââââââââââââââââââââââââââ
 // Check for existing session
 const savedSession = authGetSession();
 document.getElementById('onboarding').style.display = 'none';
@@ -2560,21 +2561,21 @@ document.getElementById('tab-home')?.classList.add('active');
 ['tab-search','tab-tracker','tab-resume'].forEach(id => document.getElementById(id)?.classList.remove('active'));
 
 if (savedSession) {
-  // Returning user — skip auth and onboarding, go straight to app
+  // Returning user â skip auth and onboarding, go straight to app
   currentUser = savedSession;
   updateUserPill();
   updateTopbarAuth();
 } else {
-  // New visit — show auth screen
+  // New visit â show auth screen
   document.getElementById('auth-screen').style.display = 'flex';
   updateTopbarAuth();
 }
 
-// ── Tracker view state ──
+// ââ Tracker view state ââ
 let trackerView = 'kanban';
 function setTrackerView(v) { trackerView = v; render(); }
 
-// ── Dark mode ──
+// ââ Dark mode ââ
 let darkMode = localStorage.getItem('grove_dark') === '1';
 function applyDarkMode() {
   document.body.classList.toggle('dark', darkMode);
@@ -2590,7 +2591,7 @@ function toggleDark() {
 }
 applyDarkMode();
 
-// ── Confetti ──
+// ââ Confetti ââ
 function triggerConfetti() {
   const colors = ['#004225','#22C55E','#F59E0B','#4F46E5','#EC4899','#F97316','#06B6D4'];
   for (let i = 0; i < 60; i++) {
@@ -2608,7 +2609,7 @@ function triggerConfetti() {
   }
 }
 
-// ── Kanban drag init (called after render) ──
+// ââ Kanban drag init (called after render) ââ
 function initKanban() {
   document.querySelectorAll('.kb-card').forEach(function(card) {
     card.addEventListener('dragstart', function(e) {
@@ -2641,7 +2642,7 @@ function initKanban() {
       app.status = newStatus;
       saveApps();
       if (newStatus === 'Offer') { setTimeout(triggerConfetti, 100); }
-      toast(app.company + ' → ' + newStatus + ' ✓');
+      toast(app.company + ' â ' + newStatus + ' â');
       render();
     });
   });
@@ -2649,7 +2650,7 @@ function initKanban() {
 let dragApp = null;
 let dragSourceStatus = null;
 
-// ── SVG empty state art ──
+// ââ SVG empty state art ââ
 function emptyTrackerSvg() {
   return '<svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">'
     + '<rect x="10" y="20" width="28" height="60" rx="6" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5"/>'
@@ -2664,7 +2665,7 @@ function emptyTrackerSvg() {
     + '</svg>';
 }
 
-// ── Match Score ──
+// ââ Match Score ââ
 let matchScoreResult = null;
 let matchScoring = false;
 
@@ -2703,7 +2704,7 @@ function renderMatchScore() {
   const el = document.getElementById('match-score-area');
   if (!el) return;
   if (matchScoring) {
-    el.innerHTML = '<div class="loader" style="padding:32px"><div class="spinner"></div><span>Analysing match…</span></div>';
+    el.innerHTML = '<div class="loader" style="padding:32px"><div class="spinner"></div><span>Analysing matchâ¦</span></div>';
     return;
   }
   if (!matchScoreResult) { el.innerHTML = ''; return; }
